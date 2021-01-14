@@ -106,13 +106,13 @@ if __name__ == '__main__':
     rank = comm.Get_rank()
     size = comm.Get_size()
 
-    def init_cond(n, range=100):
-        return np.random.randint(range, size=(n))
+    def init_cond(n):
+        return np.random.randint(low=-5, high=5, size=(n))
 
     def init_zeroes(n):
         return np.zeros(n)
 
-    testFunction = testFcn2
+    testFunction = testFcn1
     initialCondition = init_cond(4)
     preparedData_4 = np.array([3, 3, 9, 2])  #
     # preparedData_64 = np.ones((64))
@@ -125,16 +125,16 @@ if __name__ == '__main__':
     # def f(x):
     #     return testFunction(x)
 
-    data = init_zeroes(24)
+    data = init_zeroes(16)
 
     # parallel MPI
     start_time = perf_counter()
-    result = chazanMirankerMPI(testFunction, data, eps=1, N=int(1e5))
+    result = chazanMirankerMPI(testFunction, data, eps=1e-1, N=int(1e5))
     stop_time = perf_counter()
 
     # sequential
     start_time_gauss = perf_counter()
-    result_gauss = gaussSeidel(testFunction, data, eps=1e-3, N=int(1e5))
+    result_gauss = gaussSeidel(testFunction, data, eps=1e-1, N=int(1e5))
     stop_time_gauss = perf_counter()
     if rank == 0:
         print(f"Output computed X vector:\n {result['x']} \n")
