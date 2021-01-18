@@ -10,14 +10,15 @@ def f(x, y): return testFunction([x, y])
 initialCondition = np.array([10,10])
 initCond = np.random.randint(100, size=(10))
 
-def init_cond(n,range=10):
-	return np.random.randint(range, size=(n))
-
+def init_cond(n,low=-2, high=2):
+	return np.random.randint(low, high, size=(n))
+def init_zeros(n):
+	return np.zeros(n)
 
 
 def test_zb(testFunction, xsize, N, thr, eps):
 	print(f"########### DANE WEJŚĆIOWE #############: \n\tfunkcja testowa: {testFunction.__name__},\n\tn: {xsize},\n\tliczba wątków: {thr}.\n")
-	initCond = init_cond(xsize)
+	initCond = init_zeros(xsize)
 	# initCond = np.array([10,10])
 	print(f"Eps: {eps}, Nmax: {N}")
 	# print(f"Wektor wejściowy: {initCond}")
@@ -27,11 +28,11 @@ def test_zb(testFunction, xsize, N, thr, eps):
 	# print(f"Czas wykonania Gauss-Seidel:{gauss['time']}")
 	miranker = chazanMiranker(testFunction, initCond, threads=thr, eps=eps, N=int(N))
 	print(f"Algorytm Chazana Mirankera równolełgy: \n\t liczba iteracji: {miranker['nit']}, \n\t wartość funkcji: {miranker['fun']}, \n\t czas wykonania: {miranker['time']}\n")
-    # print(f"Czas wykonania Chazan Miranker: {miranker['time']}")		
+    # print(f"Czas wykonania Chazan Miranker: {miranker['time']}")
 
 	return	gauss, miranker
 
-results = test_zb(testFunction=Zadanie1, xsize=50, N=1e5, thr=4, eps=1e1)
+results = test_zb(testFunction=Zadanie1, xsize=24, N=1e5, thr=2, eps=1)
 
 def test_przysp(testFunction, xsize, showTimes=False):
 	initCond = init_cond(xsize)

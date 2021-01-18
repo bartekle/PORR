@@ -80,7 +80,7 @@ Eps MPI: 0.1, eps Gauss: 0.1
 
 Wartosc funkcji MPI: 4752570.762027051
 Liczba iteracji MPI: 25
-Czas wykonywania (parallel): 1.9641350649999367 s 
+Czas wykonywania (parallel): 1.9641350649999367 s
 
 Wartosc funkcji gauss: 4495236
 Liczba iteracji gauss: 3
@@ -97,7 +97,7 @@ Eps MPI: 1, eps Gauss: 1
 
 Wartosc funkcji MPI: 589710654.9098595
 Liczba iteracji MPI: 11
-Czas wykonywania (parallel): 6.330765639000219 s 
+Czas wykonywania (parallel): 6.330765639000219 s
 
 Wartosc funkcji gauss: 195389036
 Liczba iteracji gauss: 3
@@ -114,7 +114,7 @@ Eps MPI: 1, eps Gauss: 1
 
 Wartosc funkcji MPI: 5642102548.428484
 Liczba iteracji MPI: 15
-Czas wykonywania (parallel): 26.694176109000182 s 
+Czas wykonywania (parallel): 26.694176109000182 s
 
 Wartosc funkcji gauss: 636766970
 Liczba iteracji gauss: 4
@@ -131,11 +131,10 @@ Eps MPI: 10, eps Gauss: 10
 
 Wartosc funkcji MPI: 20281781495.679222
 Liczba iteracji MPI: 13
-Czas wykonywania (parallel): 42.653218006000316 s 
+Czas wykonywania (parallel): 42.653218006000316 s
 
 Wartosc funkcji gauss: 1723320310
 Liczba iteracji gauss: 4
 Czas wykonywania (sekwencyjna): 81.80018871499988 s
 
 #####################################################################
-
