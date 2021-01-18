@@ -1,0 +1,140 @@
+Zadanie 1
+
+Rozmiar danych: 16
+
+Max iter: 10000
+Eps MPI: 0.1, eps Gauss: 0.1
+
+Wartosc funkcji MPI: 11115022.794627568
+Liczba iteracji MPI: 20
+Czas wykonywania (parallel): 1.389222701000108 s
+
+Wartosc funkcji gauss: 2.1944870192051145e-06
+Liczba iteracji gauss: 8
+Czas wykonywania (sekwencyjna): 2.1689278369999556 s
+
+
+
+
+Zadanie 1
+
+Rozmiar danych: 32
+
+Max iter: 10000
+Eps MPI: 0.1, eps Gauss: 0.1
+
+Wartosc funkcji MPI: 540998338.0820923
+Liczba iteracji MPI: 12
+Czas wykonywania (parallel): 6.190287829999761 s
+
+Wartosc funkcji gauss: 7.562315654647768e-06
+Liczba iteracji gauss: 9
+Czas wykonywania (sekwencyjna): 19.795614274999934 s
+
+
+
+
+Zadanie 1
+
+Rozmiar danych: 48
+
+Max iter: 10000
+Eps MPI: 1, eps Gauss: 0.1
+
+Wartosc funkcji MPI: 5545319272.008848
+Liczba iteracji MPI: 10
+Czas wykonywania (parallel): 16.319392446000165 s
+
+Wartosc funkcji gauss: 3.2543077961612914e-06
+Liczba iteracji gauss: 10
+Czas wykonywania (sekwencyjna): 69.72015278299978 s
+
+
+
+
+Zadanie 1
+
+Rozmiar danych: 60
+
+Max iter: 10000
+Eps MPI: 10, eps Gauss: 10
+
+Wartosc funkcji MPI: 19482531074.945267
+Liczba iteracji MPI: 14
+Czas wykonywania (parallel): 46.73898074600038 s
+
+Wartosc funkcji gauss: 727.7179611449444
+Liczba iteracji gauss: 5
+Czas wykonywania (sekwencyjna): 61.82992716700028 s
+
+
+
+
+Dane rand z [-2, 2]:
+Zadanie 1, dane [-2, 2]
+
+Rozmiar danych: 16
+
+Max iter: 10000
+Eps MPI: 0.1, eps Gauss: 0.1
+
+Wartosc funkcji MPI: 4752570.762027051
+Liczba iteracji MPI: 25
+Czas wykonywania (parallel): 1.9641350649999367 s
+
+Wartosc funkcji gauss: 4495236
+Liczba iteracji gauss: 3
+Czas wykonywania (sekwencyjna): 1.3831278170000587 s
+
+#####################################################################
+
+Zadanie 1, dane [-2, 2]
+
+Rozmiar danych: 32
+
+Max iter: 10000
+Eps MPI: 1, eps Gauss: 1
+
+Wartosc funkcji MPI: 589710654.9098595
+Liczba iteracji MPI: 11
+Czas wykonywania (parallel): 6.330765639000219 s
+
+Wartosc funkcji gauss: 195389036
+Liczba iteracji gauss: 3
+Czas wykonywania (sekwencyjna): 9.526270192000084 s
+
+#####################################################################
+
+Zadanie 1, dane [-2, 2]
+
+Rozmiar danych: 48
+
+Max iter: 10000
+Eps MPI: 1, eps Gauss: 1
+
+Wartosc funkcji MPI: 5642102548.428484
+Liczba iteracji MPI: 15
+Czas wykonywania (parallel): 26.694176109000182 s
+
+Wartosc funkcji gauss: 636766970
+Liczba iteracji gauss: 4
+Czas wykonywania (sekwencyjna): 41.998248716000035 s
+
+#####################################################################
+
+Zadanie 1, dane [-2, 2]
+
+Rozmiar danych: 60
+
+Max iter: 10000
+Eps MPI: 10, eps Gauss: 10
+
+Wartosc funkcji MPI: 20281781495.679222
+Liczba iteracji MPI: 13
+Czas wykonywania (parallel): 42.653218006000316 s
+
+Wartosc funkcji gauss: 1723320310
+Liczba iteracji gauss: 4
+Czas wykonywania (sekwencyjna): 81.80018871499988 s
+
+#####################################################################
