@@ -89,7 +89,7 @@ def chazanMiranker(f, x0, N=int(1e5), eps=1e-6, solutionHistory=False, beta=1., 
         for dirInd in range(n - 1):
             actualDirections[dirInd] = actualDirections[dirInd + 1] + \
                                        (alphas[dirInd + 1] - alphas[dirInd]) * \
-                                       actualDirections[dirInd]
+                                       actualDirections[0]
 
         newDir = beta * initialDirections[it % initialDirections.shape[-1]]
         beta *= q
