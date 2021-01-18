@@ -35,7 +35,7 @@ def chazanMirankerMPI(f, x0, N=int(1e3), eps=1e-6, solutionHistory=False, beta=1
         # This loop is parallelizable
         for pointInd in range(n):
             def dirFcn(alpha):
-                arg = xPoints[pointInd] + alpha * actualDirections[rank]
+                arg = xPoints[pointInd] + alpha * actualDirections[0]
                 return f(arg)
 
             res = minimize_scalar(dirFcn,method='brent')
@@ -58,7 +58,7 @@ def chazanMirankerMPI(f, x0, N=int(1e3), eps=1e-6, solutionHistory=False, beta=1
         for dirInd in range(n - 1):
             actualDirections[dirInd] = actualDirections[dirInd + 1] + \
                                        (alphas[dirInd + 1] - alphas[dirInd]) * \
-                                       actualDirections[dirInd]
+                                       actualDirections[0]
 
         newDir = beta * initialDirections[it % initialDirections.shape[-1]]
         beta *= q

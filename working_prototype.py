@@ -61,15 +61,15 @@ def chazanMirankerMPI(f, x0, N=int(1e5), eps=1e-6, solutionHistory=False, beta=1
         # compute new point
         Pnew = xPoints[0] + alphas[0] * actualDirections[0]
 
-        # if norm(Pnew - P) < eps:
-        #     break
-        # else:
-        #     P = Pnew
-
-        if norm(rosen_der(Pnew) - rosen_der(P)) < eps:
+        if norm(Pnew - P) < eps:
             break
         else:
             P = Pnew
+
+        # if norm(rosen_der(Pnew) - rosen_der(P)) < eps:
+        #     break
+        # else:
+        #     P = Pnew
 
         if solutionHistory:
             xHist = np.vstack((xHist, P))
@@ -107,12 +107,12 @@ if __name__ == '__main__':
     size = comm.Get_size()
 
     def init_cond(n):
-        return np.random.randint(low=-5, high=5, size=(n))
+        return np.random.randint(low=-2, high=2, size=(n))
 
     def init_zeroes(n):
         return np.zeros(n)
 
-    testFunction = testFcn1
+    testFunction = testFcn2
     initialCondition = init_cond(4)
     preparedData_4 = np.array([3, 3, 9, 2])  #
     # preparedData_64 = np.ones((64))
@@ -125,22 +125,28 @@ if __name__ == '__main__':
     # def f(x):
     #     return testFunction(x)
 
-    data = init_zeroes(16)
-
+    data = init_cond(500)
+    eps_mpi = 1e-6
+    eps_gauss = 1e-2
     # parallel MPI
     start_time = perf_counter()
-    result = chazanMirankerMPI(testFunction, data, eps=1e-1, N=int(1e5))
+    result = chazanMirankerMPI(testFunction, data, eps=eps_mpi, N=int(1e5))
     stop_time = perf_counter()
 
     # sequential
     start_time_gauss = perf_counter()
-    result_gauss = gaussSeidel(testFunction, data, eps=1e-1, N=int(1e5))
+    result_gauss = gaussSeidel(testFunction, data, eps=eps_gauss, N=int(1e5))
     stop_time_gauss = perf_counter()
     if rank == 0:
-        print(f"Output computed X vector:\n {result['x']} \n")
+        print("Zadanie 2, dane: [-2, 2]\n")
+        print(f"Rozmiar danych: {len(data)}\n")
+        print(f"Max iter: {10000}")
+        print(f"Eps MPI: {eps_mpi}, eps Gauss: {eps_gauss}\n")
+        # print(f"Output computed X vector:\n {result['x']} \n")
         print(f"Wartosc funkcji MPI: {result['fun']}")
         print(f"Liczba iteracji MPI: {result['nit']}")
         print(f"Czas wykonywania (parallel): {stop_time-start_time} s \n")
         print(f"Wartosc funkcji gauss: {result_gauss['fun']}")
         print(f"Liczba iteracji gauss: {result_gauss['nit']}")
         print(f"Czas wykonywania (sekwencyjna): {stop_time_gauss-start_time_gauss} s")
+        print("\n#####################################################################\n")
