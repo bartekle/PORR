@@ -1,9 +1,9 @@
 from solvers import chazanMiranker, gaussSeidel
-from testFunctions import Zadanie1, Zadanie2
+from testFunctions import testFcn1, testFcn2
 import numpy as np
 import timeit
 
-testFunction = Zadanie2
+testFunction = testFcn1
 
 def f(x, y): return testFunction([x, y])
 
