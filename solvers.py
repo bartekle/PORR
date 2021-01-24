@@ -34,8 +34,8 @@ def gaussSeidel(f, x0, N=int(1e3), eps=1e-6, solutionHistory=False):
             xHist = np.vstack((xHist, xn))
             funHist = np.vstack((funHist, res.fun))
         # debug
-        print(f"Gauss: {f(xn)}, it: {n+1}")
-        if (f(xn) - 0 < eps) or (f(xn) == f(xlast)):
+        # print(f"Gauss: {f(xn)}, it: {n+1}")
+        if (f(xn) - 0 < eps):
             break
 
     end_time = perf_counter()
@@ -88,12 +88,13 @@ def chazanMiranker(f, x0, N=int(1e3), eps=1e-6, solutionHistory=False, beta=1., 
 
         Pnew = xPoints[0] + alphas[0] * actualDirections[0]
         # debug
-        print(f"Chazan: {f(Pnew)}, it: {it+1}")
+        # print(f"Chazan: {f(Pnew)}, it: {it+1}")
         if f(Pnew) - 0 < eps:
             P = Pnew
             break
         else:
-            P = Pnew
+            if f(Pnew) < f(P):
+                P = Pnew
 
         if solutionHistory:
             xHist = np.vstack((xHist, P))

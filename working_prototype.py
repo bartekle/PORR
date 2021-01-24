@@ -1,12 +1,12 @@
 import numpy as np
 from mpi4py import MPI
-from testFunctions import testFcn1, testFcn2
+from testFunctions import testFcn1, testFcn2, testFcn3
 from numpy.linalg import norm
 from scipy.optimize import minimize_scalar, rosen_der, minimize
 from time import perf_counter
 from solvers import gaussSeidel
 import time
-7
+
 def chazanMirankerMPI(f, x0, N=int(1e5), eps=1e-6, solutionHistory=False, beta=1., q=0.9):
     P = x0
     fn = f(P)
@@ -60,8 +60,8 @@ def chazanMirankerMPI(f, x0, N=int(1e5), eps=1e-6, solutionHistory=False, beta=1
         # print(f"rank: {rank}, alphas: {alphas}")
         # compute new point
         Pnew = xPoints[0] + alphas[0] * actualDirections[0]
-        if rank == 0:
-            print(f"Wartosc fcji: {f(Pnew)}, it: {it+1}")
+        # if rank == 0:
+            # print(f"Wartosc fcji: {f(Pnew)}, it: {it+1}")
         # # DEBUG:
         # if rank == 0:
         #     print(f(Pnew))
@@ -69,7 +69,8 @@ def chazanMirankerMPI(f, x0, N=int(1e5), eps=1e-6, solutionHistory=False, beta=1
             P = Pnew
             break
         else:
-            P = Pnew
+            if f(Pnew) < f(P):
+                P = Pnew
 
         # if norm(Pnew - P) < eps:
         #     P = Pnew
@@ -118,7 +119,7 @@ if __name__ == '__main__':
     def init_zeros(n):
         return np.zeros(n)
 
-    testFunction = testFcn2
+    testFunction = testFcn1
     initialCondition = init_cond(4)
     preparedData_4 = np.array([3, 3, 9, 2])  #
     # preparedData_64 = np.ones((64))
@@ -131,7 +132,7 @@ if __name__ == '__main__':
     # def f(x):
     #     return testFunction(x)
 
-    data = init_zeros(12)
+    data = init_zeros(50)
     if rank == 0:
         print(data)
         # print(testFcn2(data))
@@ -139,17 +140,17 @@ if __name__ == '__main__':
     eps_gauss = 10
     # parallel MPI
     start_time = perf_counter()
-    result = chazanMirankerMPI(testFunction, data, eps=eps_mpi, N=int(1e5))
+    result = chazanMirankerMPI(testFunction, data, eps=eps_mpi, N=int(500))
     stop_time = perf_counter()
 
     # sequential
     start_time_gauss = perf_counter()
-    result_gauss = gaussSeidel(testFunction, data, eps=eps_gauss, N=int(1e5))
+    result_gauss = gaussSeidel(testFunction, data, eps=eps_gauss, N=int(500))
     stop_time_gauss = perf_counter()
     if rank == 0:
         print("Zadanie 2, dane: [0...]\n")
         print(f"Rozmiar danych: {len(data)}\n")
-        print(f"Max iter: {10000}")
+        print(f"Max iter: {500}")
         print(f"Eps MPI: {eps_mpi}, eps Gauss: {eps_gauss}\n")
         # print(f"Output computed X vector:\n {result['x']} \n")
         print(f"Wartosc funkcji MPI: {result['fun']}")
